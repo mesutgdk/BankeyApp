@@ -13,6 +13,7 @@
 		634C43732A17DD8E009E46ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634C43712A17DD8E009E46ED /* LaunchScreen.storyboard */; };
 		634C437D2A194996009E46ED /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C437C2A194996009E46ED /* LoginView.swift */; };
 		63BA175B2A1CF42D0035EE18 /* OnboardingContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA175A2A1CF42D0035EE18 /* OnboardingContainerVC.swift */; };
+		63BA175F2A1D69F00035EE18 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA175E2A1D69F00035EE18 /* OnboardingVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		634C43742A17DD8E009E46ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		634C437C2A194996009E46ED /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		63BA175A2A1CF42D0035EE18 /* OnboardingContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerVC.swift; sourceTree = "<group>"; };
+		63BA175E2A1D69F00035EE18 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				63BA175A2A1CF42D0035EE18 /* OnboardingContainerVC.swift */,
+				63BA175E2A1D69F00035EE18 /* OnboardingVC.swift */,
 			);
 			name = OnBoarding;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			files = (
 				634C437D2A194996009E46ED /* LoginView.swift in Sources */,
 				63BA175B2A1CF42D0035EE18 /* OnboardingContainerVC.swift in Sources */,
+				63BA175F2A1D69F00035EE18 /* OnboardingVC.swift in Sources */,
 				634C436B2A17DD8D009E46ED /* LoginViewController.swift in Sources */,
 				634C43672A17DD8D009E46ED /* AppDelegate.swift in Sources */,
 			);
