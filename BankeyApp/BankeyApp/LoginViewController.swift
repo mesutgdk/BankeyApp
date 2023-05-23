@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
+    let appNameLabel = UILabel()
+    let appDescribeLabel = UILabel()
     
     var username : String? {
         return loginView.userNameTextField.text
@@ -44,12 +46,25 @@ extension LoginViewController{
         errorMessageLabel.textColor = .systemRed
         errorMessageLabel.numberOfLines = 0
         errorMessageLabel.isHidden = true
+        
+        appNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        appNameLabel.textAlignment = .center
+        appNameLabel.textColor = .black
+        appNameLabel.text = "Bankey"
+        appNameLabel.font = appNameLabel.font.withSize(20)
+        
+        appDescribeLabel.translatesAutoresizingMaskIntoConstraints = false
+        appDescribeLabel.textAlignment = .center
+        appDescribeLabel.text = "Your premium source for all things banking!"
+        appDescribeLabel.font = appNameLabel.font.withSize(16)
     }
     
     private func layout() {
         view.addSubview(loginView) // everything u made, u must add it
         view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
+        view.addSubview(appNameLabel)
+        view.addSubview(appDescribeLabel)
         
         //LoginView
         NSLayoutConstraint.activate([
@@ -72,6 +87,20 @@ extension LoginViewController{
             errorMessageLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
             errorMessageLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor)
         ])
+        
+        // AppDescribeLabel
+        NSLayoutConstraint.activate([
+            appDescribeLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: loginView.topAnchor, multiplier: 3),
+            appDescribeLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            appDescribeLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
+        
+        // AppNameLAbel
+        NSLayoutConstraint.activate([
+            appNameLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: appDescribeLabel.topAnchor, multiplier: 4),
+            appNameLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            appNameLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
     }
     
     
@@ -88,6 +117,7 @@ extension LoginViewController {
         }
         if username.isEmpty || password.isEmpty {
             configureView(withMessage: "Username / password cannot be a blank")
+            return
         }
         if username == "Mesut" && password == "Hello" {
             signInButton.configuration?.showsActivityIndicator = true
@@ -96,7 +126,7 @@ extension LoginViewController {
         }
     }
     
-    //it is what errorMessageLabel gives, just call it 
+    //it is what errorMessageLabel gives, just call it
     private func configureView(withMessage message: String) {
         errorMessageLabel.isHidden = false
         errorMessageLabel.text = message
