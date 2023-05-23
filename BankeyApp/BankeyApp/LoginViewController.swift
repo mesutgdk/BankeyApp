@@ -49,14 +49,18 @@ extension LoginViewController{
         
         appNameLabel.translatesAutoresizingMaskIntoConstraints = false
         appNameLabel.textAlignment = .center
-        appNameLabel.textColor = .black
+        appNameLabel.adjustsFontForContentSizeCategory = true
+        appNameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         appNameLabel.text = "Bankey"
-        appNameLabel.font = appNameLabel.font.withSize(20)
+
         
         appDescribeLabel.translatesAutoresizingMaskIntoConstraints = false
         appDescribeLabel.textAlignment = .center
+        appDescribeLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        appDescribeLabel.adjustsFontForContentSizeCategory = true
+        appDescribeLabel.numberOfLines = 0
         appDescribeLabel.text = "Your premium source for all things banking!"
-        appDescribeLabel.font = appNameLabel.font.withSize(16)
+
     }
     
     private func layout() {
@@ -90,16 +94,17 @@ extension LoginViewController{
         
         // AppDescribeLabel
         NSLayoutConstraint.activate([
-            appDescribeLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: loginView.topAnchor, multiplier: 3),
+            loginView.topAnchor.constraint(equalToSystemSpacingBelow: appDescribeLabel.bottomAnchor, multiplier: 3),
             appDescribeLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             appDescribeLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
         
         // AppNameLAbel
         NSLayoutConstraint.activate([
-            appNameLabel.bottomAnchor.constraint(equalToSystemSpacingBelow: appDescribeLabel.topAnchor, multiplier: 4),
-            appNameLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
-            appNameLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            appDescribeLabel.topAnchor.constraint(equalToSystemSpacingBelow: appNameLabel.bottomAnchor, multiplier: 3),
+            appNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+//            appNameLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+//            appNameLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
     }
     
