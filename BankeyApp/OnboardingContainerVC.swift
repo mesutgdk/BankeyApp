@@ -131,8 +131,13 @@ extension OnboardingContainerVC{
     
     @objc func closeTapped(_ sender: UIButton){
         //To Do
-        delegate?.didFinishOnboarding()
+        delegate?.didFinishOnboarding() // it is where we want to fire the delegate
     }
+    
+    // too much button so i romoved the next and done button
+//    @objc func doneTapped(_ sender: UIButton){
+//        delegate?.didFinishOnboarding()
+//    }
 }
 //// MARK: - ViewControllers
 //class ViewController1: UIViewController {
