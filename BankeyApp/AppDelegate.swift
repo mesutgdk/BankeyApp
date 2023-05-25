@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var hasOnboarded = false
+    
     let loginViewController = LoginViewController()
     
     let onboardingContainerVC = OnboardingContainerVC ()
@@ -43,13 +45,18 @@ extension AppDelegate: LoginViewControllerDelegate{
     func didLogin() {
 //     print("foo - Did login")
 //        window?.rootViewController = onboardingContainerVC
-        setRootVC(onboardingContainerVC)
+        if hasOnboarded {
+            setRootVC(onboardingContainerVC)
+        } else {
+            setRootVC(onboardingContainerVC)
+        }
     }
 }
 
 extension AppDelegate: OnboardingVCDelegate {
     func didFinishOnboarding() {
         setRootVC(dummyVC)
+        hasOnboarded = true
     }
 }
 extension AppDelegate: LogoutDelegate {
