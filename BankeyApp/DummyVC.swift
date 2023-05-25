@@ -6,9 +6,7 @@
 
 import UIKit
 
-protocol DummyVCDelegate: AnyObject{
-    func didLogOut()
-}
+
 
 class DummyVC: UIViewController {
     
@@ -16,7 +14,7 @@ class DummyVC: UIViewController {
     let label = UILabel()
     let logoutButton = UIButton(type: .system)
     
-    weak var delegate : DummyVCDelegate?
+    weak var logoutDelegate : LogoutDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +56,7 @@ extension DummyVC{
 }
 extension DummyVC {
     @objc func logoutTapped (){
-        delegate?.didLogOut()
+        logoutDelegate?.didLogOut()
     }
 }
 

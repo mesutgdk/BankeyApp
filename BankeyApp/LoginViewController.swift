@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LogoutDelegate: AnyObject{
+    func didLogOut()
+}
+
 protocol LoginViewControllerDelegate : AnyObject {
 //    func didLogin(_ sender: LoginViewController) // pass data
     func didLogin()
