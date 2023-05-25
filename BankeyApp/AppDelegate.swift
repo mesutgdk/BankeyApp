@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loginViewController.delegate = self
         onboardingContainerVC.delegate = self
-        dummyVC.delegate = self
+        dummyVC.logoutDelegate = self
         
         
         
@@ -50,13 +50,11 @@ extension AppDelegate: LoginViewControllerDelegate{
 extension AppDelegate: OnboardingVCDelegate {
     func didFinishOnboarding() {
         setRootVC(dummyVC)
-        print("foo - onboarding is done")
     }
 }
-extension AppDelegate: DummyVCDelegate {
+extension AppDelegate: LogoutDelegate {
     func didLogOut() {
         setRootVC(loginViewController)
-        print("foo - Logout operation done!")
     }
 }
 
