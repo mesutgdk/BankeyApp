@@ -11,17 +11,20 @@ class OnboardingContainerVC: UIViewController {
 
     let pageViewController: UIPageViewController
     var pages = [UIViewController]()
-    var currentVC: UIViewController {
-        didSet {
-        }
-    }
+    var currentVC: UIViewController
+    let closeButton = UIButton(type: .system)
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        let page1 = ViewController1()
-        let page2 = ViewController2()
-        let page3 = ViewController3()
+        // it is a test path to see UIPageVC
+//        let page1 = ViewController1()
+//        let page2 = ViewController2()
+//        let page3 = ViewController3()
+        
+        let page1 = OnboardingVC(heroImageName: "car", titleText: "Bankey is faster, easier to use, and has brand new look and feel that will make you feel like you are back in 1990s.")
+        let page2 = OnboardingVC(heroImageName: "world", titleText: "Move your money around the world quickly and securely.")
+        let page3 = OnboardingVC(heroImageName: "thumbs", titleText: "Learn more at 'www.bankey.com'.")
         
         pages.append(page1)
         pages.append(page2)
@@ -39,6 +42,12 @@ class OnboardingContainerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+        style()
+        layout()
+    }
+    
+    private func setup(){
         view.backgroundColor = .systemPurple
         
         // It is how to add child VC to ParentVC, 3 steps
@@ -60,6 +69,24 @@ class OnboardingContainerVC: UIViewController {
         pageViewController.setViewControllers([pages.first!], direction: .forward, animated: false, completion: nil)
         currentVC = pages.first!
     }
+    private func style() {
+        
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.setTitle("Close", for: [])
+        closeButton.addTarget(self, action: #selector(closeTapped), for: .primaryActionTriggered)
+        
+        view.addSubview(closeButton)
+    }
+    private func layout(){
+        
+        //closeButton
+        NSLayoutConstraint.activate([
+            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2)
+        ])
+    }
+    
+   
 }
 
 // MARK: - UIPageViewControllerDataSource
@@ -93,25 +120,31 @@ extension OnboardingContainerVC: UIPageViewControllerDataSource {
         return pages.firstIndex(of: self.currentVC) ?? 0
     }
 }
-
-// MARK: - ViewControllers
-class ViewController1: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemRed
+// MARK: -Actions
+extension OnboardingContainerVC{
+    
+    @objc func closeTapped(_ sender: UIButton){
+        //To Do
     }
 }
-
-class ViewController2: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemGreen
-    }
-}
-
-class ViewController3: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBlue
-    }
-}
+//// MARK: - ViewControllers
+//class ViewController1: UIViewController {
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = .systemRed
+//    }
+//}
+//
+//class ViewController2: UIViewController {
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = .systemGreen
+//    }
+//}
+//
+//class ViewController3: UIViewController {
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.backgroundColor = .systemBlue
+//    }
+//}
