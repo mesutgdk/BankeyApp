@@ -12,8 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var hasOnboarded = false
-    
+        
     let loginViewController = LoginViewController()
     
     let onboardingContainerVC = OnboardingContainerVC ()
@@ -30,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dummyVC.logoutDelegate = self
         
         
-        
 //        window?.rootViewController = LoginViewController ()
 //        window?.rootViewController = OnboardingContainerVC ()
 //        window?.rootViewController = OnboardingVC(heroImageName: "delorean", titleText: "Bankey is faster, easier to use, and has brand new look and feel that will make you feel like you are back in 1990s")
@@ -45,7 +43,7 @@ extension AppDelegate: LoginViewControllerDelegate{
     func didLogin() {
 //     print("foo - Did login")
 //        window?.rootViewController = onboardingContainerVC
-        if hasOnboarded {
+        if hasOnboard {
             setRootVC(onboardingContainerVC)
         } else {
             setRootVC(onboardingContainerVC)
