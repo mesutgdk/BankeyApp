@@ -23,10 +23,6 @@ class OnboardingContainerVC: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        // it is a test path to see UIPageVC
-//        let page1 = ViewController1()
-//        let page2 = ViewController2()
-//        let page3 = ViewController3()
         
         let page1 = OnboardingVC(heroImageName: "car", titleText: "Bankey is faster, easier to use, and has brand new look and feel that will make you feel like you are back in 1990s.")
         let page2 = OnboardingVC(heroImageName: "world", titleText: "Move your money around the world quickly and securely.")
@@ -134,29 +130,5 @@ extension OnboardingContainerVC{
         delegate?.didFinishOnboarding() // it is where we want to fire the delegate
     }
     
-    // too much button so i romoved the next and done button
-//    @objc func doneTapped(_ sender: UIButton){
-//        delegate?.didFinishOnboarding()
-//    }
+
 }
-//// MARK: - ViewControllers
-//class ViewController1: UIViewController {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .systemRed
-//    }
-//}
-//
-//class ViewController2: UIViewController {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .systemGreen
-//    }
-//}
-//
-//class ViewController3: UIViewController {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        view.backgroundColor = .systemBlue
-//    }
-//}

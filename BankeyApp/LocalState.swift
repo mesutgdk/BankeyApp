@@ -19,7 +19,7 @@ public class LocalState {
         }
         set(newValue) {
             UserDefaults.standard.set(newValue, forKey: Keys.hasOnboard.rawValue)
-            // sychronizing utulity is no longer requred because of changes above ios 12
+            // sychronizing utulity is no longer requred because of changes above ios
 //            UserDefaults.standard.synchronize()
         }
     }
