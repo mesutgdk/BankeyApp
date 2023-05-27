@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let dummyVC = DummyVC()
     
+    let mainVC = MainViewController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
@@ -30,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dummyVC.logoutDelegate = self
         
         window?.rootViewController = loginViewController
-//        window?.rootViewController = MainViewController()
-
-
+//        window?.rootViewController = mainVC
+//        mainVC.selectedIndex = 1 // it is the opening VC, first VC is seen, u can choose
+        
         return true
     }
 }
