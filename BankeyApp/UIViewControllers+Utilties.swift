@@ -5,7 +5,7 @@
 //  Created by Mesut Gedik on 27.05.2023.
 //
 
-import UIKit
+import UIKit // i created additional parts, to set barimage and status easly
 
 extension UIViewController {
     func setStatusBar(){

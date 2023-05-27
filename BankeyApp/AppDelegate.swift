@@ -29,12 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingContainerVC.delegate = self
         dummyVC.logoutDelegate = self
         
-        
-//        window?.rootViewController = LoginViewController ()
-//        window?.rootViewController = OnboardingContainerVC ()
-//        window?.rootViewController = OnboardingVC(heroImageName: "delorean", titleText: "Bankey is faster, easier to use, and has brand new look and feel that will make you feel like you are back in 1990s")
         window?.rootViewController = loginViewController
-//        window?.rootViewController = onboardingContainerVC
+//        window?.rootViewController = MainViewController()
 
 
         return true
