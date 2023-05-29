@@ -67,8 +67,8 @@
             <constraints>
                 <constraint firstItem="F1E-8i-OPd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="3bk-cR-8dv"/>
                 <constraint firstItem="F1E-8i-OPd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="VyZ-uO-u1H"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="F1E-8i-OPd" secondAttribute="trailing" constant="16" id="d2P-Lk-etk"/>
-                <constraint firstAttribute="bottom" secondItem="F1E-8i-OPd" secondAttribute="bottom" constant="16" id="svi-be-d5h"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="F1E-8i-OPd" secondAttribute="trailing" priority="999" constant="16" id="d2P-Lk-etk"/>
+                <constraint firstAttribute="bottom" secondItem="F1E-8i-OPd" secondAttribute="bottom" priority="999" constant="16" id="svi-be-d5h"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="93.129770992366403" y="-226.05633802816902"/>
