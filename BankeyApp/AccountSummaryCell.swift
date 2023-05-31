@@ -6,3 +6,111 @@
 //
 
 import Foundation
+import UIKit
+
+class AccountSummaryCell: UITableViewCell {
+    
+    let typeLabel = UILabel()
+    let underlineView = UIView()
+    let nameLabel = UILabel()
+    
+    let moneyStackView = UIStackView()
+    let moneyLabel = UILabel()
+    let moneyAmountLabel = UILabel()
+    
+    let selectedImageView = UIImageView()
+
+    static let reuseID = "AccountSummaryCell"
+    static let rowHeight: CGFloat = 100
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setup()
+        layout()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension AccountSummaryCell {
+    
+    private func setup() {
+        
+        contentView.addSubview(typeLabel)
+        contentView.addSubview(underlineView)
+        contentView.addSubview(nameLabel)
+        
+        moneyStackView.addArrangedSubview(moneyLabel)
+        moneyStackView.addArrangedSubview(moneyAmountLabel)
+        contentView.addSubview(moneyStackView)
+        
+        contentView.addSubview(selectedImageView)
+
+        typeLabel.translatesAutoresizingMaskIntoConstraints = false
+        typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        typeLabel.adjustsFontForContentSizeCategory = true
+        typeLabel.text = "Account type"
+        
+        underlineView.translatesAutoresizingMaskIntoConstraints = false
+        underlineView.backgroundColor = appColor
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        nameLabel.text = "Account name"
+        
+        moneyStackView.translatesAutoresizingMaskIntoConstraints = false
+        moneyStackView.axis = .vertical
+        moneyStackView.spacing = 0
+        
+        moneyLabel.translatesAutoresizingMaskIntoConstraints = false
+        moneyLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        moneyLabel.textAlignment = .right
+        moneyLabel.text = "Some balance"
+        
+        moneyAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        moneyAmountLabel.textAlignment = .right
+        moneyAmountLabel.text = "$929,466.63"
+        
+        selectedImageView.translatesAutoresizingMaskIntoConstraints = false
+        let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
+        selectedImageView.image = chevronImage
+
+    }
+    
+    private func layout() {
+        //typeLabel
+        NSLayoutConstraint.activate([
+            typeLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
+            typeLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+        ])
+        
+        //underlineView
+        NSLayoutConstraint.activate([
+            underlineView.topAnchor.constraint(equalToSystemSpacingBelow: typeLabel.bottomAnchor, multiplier: 1),
+            underlineView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+            underlineView.widthAnchor.constraint(equalTo: typeLabel.widthAnchor),
+            underlineView.heightAnchor.constraint(equalToConstant: 4)
+        ])
+        //nameLabel
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 2),
+            nameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+        ])
+        // stackView
+        NSLayoutConstraint.activate([
+            moneyStackView.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 0),
+            moneyStackView.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 4),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: moneyStackView.trailingAnchor, multiplier: 4),
+
+        ])
+        //selectedImageView
+        NSLayoutConstraint.activate([
+            selectedImageView.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: selectedImageView.trailingAnchor, multiplier: 1)
+        ])
+        
+    }
+}

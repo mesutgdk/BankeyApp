@@ -114,13 +114,29 @@
 			name = UUtilities;
 			sourceTree = "<group>";
 		};
+		63A78CF62A27DEB900BDB640 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				63A78CEC2A2537A400BDB640 /* AccountSummaryHeaderView.swift */,
+				63A78CEE2A2537C800BDB640 /* AccountSummaryHeaderView.xib */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		63A78CF92A27DEE400BDB640 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				63A78CF42A27DD6C00BDB640 /* AccountSummaryCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		63ACAF752A2293AB0011EA08 /* AccountSummary */ = {
 			isa = PBXGroup;
 			children = (
 				63ACAF762A2293E50011EA08 /* AccountSummaryViewController.swift */,
-				63A78CEC2A2537A400BDB640 /* AccountSummaryHeaderView.swift */,
-				63A78CEE2A2537C800BDB640 /* AccountSummaryHeaderView.xib */,
-				63A78CF42A27DD6C00BDB640 /* AccountSummaryCell.swift */,
+				63A78CF62A27DEB900BDB640 /* Header */,
+				63A78CF92A27DEE400BDB640 /* Cell */,
 			);
 			name = AccountSummary;
 			sourceTree = "<group>";
