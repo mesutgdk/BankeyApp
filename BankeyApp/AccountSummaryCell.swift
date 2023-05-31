@@ -21,7 +21,7 @@ class AccountSummaryCell: UITableViewCell {
     let selectedImageView = UIImageView()
 
     static let reuseID = "AccountSummaryCell"
-    static let rowHeight: CGFloat = 100
+    static let rowHeight: CGFloat = 112
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -72,7 +72,7 @@ extension AccountSummaryCell {
         
         moneyAmountLabel.translatesAutoresizingMaskIntoConstraints = false
         moneyAmountLabel.textAlignment = .right
-        moneyAmountLabel.text = "$929,466.63"
+        moneyAmountLabel.attributedText = makeFormattedMoney(dollars: "929,466", cents: "23")
         
         selectedImageView.translatesAutoresizingMaskIntoConstraints = false
         let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
@@ -112,5 +112,22 @@ extension AccountSummaryCell {
             trailingAnchor.constraint(equalToSystemSpacingAfter: selectedImageView.trailingAnchor, multiplier: 1)
         ])
         
+    }
+}
+// split and combine the mone func
+extension AccountSummaryCell{
+    private func makeFormattedMoney(dollars: String, cents: String)-> NSMutableAttributedString {
+        let dollarSignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .callout), .baselineOffset: 8]
+        let dollarAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title1)]
+        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .baselineOffset: 8]
+        
+        let rootString = NSMutableAttributedString(string: "$", attributes: dollarSignAttributes)
+        let dollarString = NSAttributedString(string: dollars, attributes: dollarAttributes)
+        let centString = NSAttributedString(string: cents, attributes: centAttributes)
+        
+        rootString.append(dollarString)
+        rootString.append(centString)
+        
+        return rootString
     }
 }
