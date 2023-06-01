@@ -31,10 +31,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loginViewController.delegate = self
         onboardingContainerVC.delegate = self
-        dummyVC.logoutDelegate = self
         
+        let vc = mainVC
+        vc.setStatusBar()
+        
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+        
+        window?.rootViewController = vc
+
 //        window?.rootViewController = loginViewController
-        window?.rootViewController = accountSummaryVC
+//        window?.rootViewController = accountSummaryVC
 //        window?.rootViewController = mainVC
 //        mainVC.selectedIndex = 1 // it is the opening VC, first VC is seen, u can choose
         
@@ -46,7 +53,7 @@ extension AppDelegate: LoginViewControllerDelegate{
 //     print("foo - Did login")
 //        window?.rootViewController = onboardingContainerVC
         if LocalState.hasOnboard {
-            setRootVC(onboardingContainerVC)
+            setRootVC(mainVC)
         } else {
             setRootVC(onboardingContainerVC)
         }
@@ -61,6 +68,7 @@ extension AppDelegate: OnboardingVCDelegate {
 }
 extension AppDelegate: LogoutDelegate {
     func didLogOut() {
+        LocalState.hasOnboard = true
         setRootVC(loginViewController)
     }
 }
