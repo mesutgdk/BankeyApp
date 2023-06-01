@@ -81,15 +81,15 @@ extension AccountSummaryViewController: UITableViewDelegate{
 }
 extension AccountSummaryViewController{
     private func fetch(){
-//        let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
-//                                                   accountName: "Basic Savings")
-//        let visa = AccountSummaryCell.ViewModel(accountType: .CreditCard,
-//                                                accountName: "Visa Avion Card")
-//        let investment = AccountSummaryCell.ViewModel(accountType: .Investment,
-//                                                      accountName: "Tax-Free Saver")
-//        
-//        accounts.append(savings)
-//        accounts.append(visa)
-//        accounts.append(investment)
+        let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
+                                                   accountName: "Basic Savings")
+        let visa = AccountSummaryCell.ViewModel(accountType: .CreditCard,
+                                                accountName: "Visa Avion Card")
+        let investment = AccountSummaryCell.ViewModel(accountType: .Investment,
+                                                      accountName: "Tax-Free Saver")
+        
+        accounts.append(savings)
+        accounts.append(visa)
+        accounts.append(investment)
     }
 }

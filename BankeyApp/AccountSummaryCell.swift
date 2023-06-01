@@ -150,21 +150,14 @@ extension AccountSummaryCell{
     }
 }
 extension AccountSummaryCell {
-    func configure (with vm: ViewModel) {
-        typeLabel.text = vm.accountType.rawValue
-        nameLabel.text = vm.accountName
-//        moneyAmountLabel.attributedText = vm.balanceAsAtributedString
-        
+    func configure(with vm: ViewModel) {
         switch vm.accountType {
-        case .Banking:
-            underlineView.backgroundColor = appColor
-            moneyLabel.text = "Current Money"
-        case.CreditCard:
-            underlineView.backgroundColor = .systemOrange
-            moneyLabel.text = "Balance"
-        case.Investment:
-            underlineView.backgroundColor = .systemBlue
-            moneyLabel.text = "Value"
-        }
+                case .Banking:
+                    break
+                case .CreditCard:
+                    break
+                case .Investment:
+                    break
+                }
     }
 }
