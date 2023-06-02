@@ -17,9 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loginViewController = LoginViewController()
     
     let onboardingContainerVC = OnboardingContainerVC ()
-    
-    let dummyVC = DummyVC()
-    
+        
     let mainVC = MainViewController()
     
     let accountSummaryVC = AccountSummaryViewController()
@@ -62,7 +60,7 @@ extension AppDelegate: LoginViewControllerDelegate{
 
 extension AppDelegate: OnboardingVCDelegate {
     func didFinishOnboarding() {
-        setRootVC(dummyVC)
+        setRootVC(accountSummaryVC)
         LocalState.hasOnboard = true
     }
 }
