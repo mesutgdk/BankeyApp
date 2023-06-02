@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loginViewController = LoginViewController()
     
     let onboardingContainerVC = OnboardingContainerVC ()
-    
-    let dummyVC = DummyVC()
-    
+        
     let mainVC = MainViewController()
+    
+    let accountSummaryVC = AccountSummaryViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -29,9 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         loginViewController.delegate = self
         onboardingContainerVC.delegate = self
-        dummyVC.logoutDelegate = self
         
-        window?.rootViewController = loginViewController
+        let vc = mainVC
+        vc.setStatusBar()
+        
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+        
+        window?.rootViewController = vc
+
+//        window?.rootViewController = loginViewController
+//        window?.rootViewController = accountSummaryVC
 //        window?.rootViewController = mainVC
 //        mainVC.selectedIndex = 1 // it is the opening VC, first VC is seen, u can choose
         
@@ -43,7 +51,7 @@ extension AppDelegate: LoginViewControllerDelegate{
 //     print("foo - Did login")
 //        window?.rootViewController = onboardingContainerVC
         if LocalState.hasOnboard {
-            setRootVC(onboardingContainerVC)
+            setRootVC(mainVC)
         } else {
             setRootVC(onboardingContainerVC)
         }
@@ -52,12 +60,13 @@ extension AppDelegate: LoginViewControllerDelegate{
 
 extension AppDelegate: OnboardingVCDelegate {
     func didFinishOnboarding() {
-        setRootVC(dummyVC)
+        setRootVC(accountSummaryVC)
         LocalState.hasOnboard = true
     }
 }
 extension AppDelegate: LogoutDelegate {
     func didLogOut() {
+        LocalState.hasOnboard = true
         setRootVC(loginViewController)
     }
 }

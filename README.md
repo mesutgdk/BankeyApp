@@ -1,2 +1,2 @@
-# Bankey App
+# BankeyApp
 
