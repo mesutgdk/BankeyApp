@@ -49,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: LoginViewControllerDelegate{
     func didLogin() {
 //     print("foo - Did login")
-//        window?.rootViewController = onboardingContainerVC
         if LocalState.hasOnboard {
             setRootVC(mainVC)
         } else {
