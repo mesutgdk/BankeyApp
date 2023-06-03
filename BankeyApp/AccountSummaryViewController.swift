@@ -57,7 +57,7 @@ extension AccountSummaryViewController{
         let header = AccountSummaryHeaderView(frame: .zero)
         let size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         header.frame.size = size
-        
+       
         tableView.tableHeaderView = header
         
     }

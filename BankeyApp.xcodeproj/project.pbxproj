@@ -27,6 +27,7 @@
 		63BFF5622A2B2AF50004BDC7 /* CurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */; };
 		63BFF5642A2B55210004BDC7 /* NSNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5632A2B55210004BDC7 /* NSNotificationName.swift */; };
 		63BFF5662A2B591C0004BDC7 /* UItextField+SecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5652A2B591B0004BDC7 /* UItextField+SecureToggle.swift */; };
+		63BFF5692A2BD12A0004BDC7 /* ShakeyBellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5682A2BD12A0004BDC7 /* ShakeyBellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTests.swift; sourceTree = "<group>"; };
 		63BFF5632A2B55210004BDC7 /* NSNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationName.swift; sourceTree = "<group>"; };
 		63BFF5652A2B591B0004BDC7 /* UItextField+SecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UItextField+SecureToggle.swift"; sourceTree = "<group>"; };
+		63BFF5682A2BD12A0004BDC7 /* ShakeyBellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeyBellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				63BA17592A1CF3980035EE18 /* OnBoarding */,
 				63ACAF752A2293AB0011EA08 /* AccountSummary */,
 				63706AC42A21E58900548FCE /* UUtilities */,
+				63BFF5672A2BD1000004BDC7 /* Components */,
 				634C437A2A1948A2009E46ED /* Files */,
 			);
 			path = BankeyApp;
@@ -190,6 +193,14 @@
 				63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */,
 			);
 			path = BankeyUnitTests;
+			sourceTree = "<group>";
+		};
+		63BFF5672A2BD1000004BDC7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				63BFF5682A2BD12A0004BDC7 /* ShakeyBellView.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 				63706AC32A1FFF6D00548FCE /* DummyVC.swift in Sources */,
 				63BFF5642A2B55210004BDC7 /* NSNotificationName.swift in Sources */,
 				63A78CF52A27DD6C00BDB640 /* AccountSummaryCell.swift in Sources */,
+				63BFF5692A2BD12A0004BDC7 /* ShakeyBellView.swift in Sources */,
 				63BA175B2A1CF42D0035EE18 /* OnboardingContainerVC.swift in Sources */,
 				63BA175F2A1D69F00035EE18 /* OnboardingVC.swift in Sources */,
 				63ACAF742A2288120011EA08 /* MainViewController.swift in Sources */,
