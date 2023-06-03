@@ -38,9 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = vc
 
-//        window?.rootViewController = loginViewController
-//        window?.rootViewController = accountSummaryVC
-//        window?.rootViewController = mainVC
 //        mainVC.selectedIndex = 1 // it is the opening VC, first VC is seen, u can choose
         
         return true
