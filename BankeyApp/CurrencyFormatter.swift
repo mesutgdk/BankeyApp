@@ -37,7 +37,7 @@ struct CurrencyFormatter {
         return dollars
     }
     
-    // Convert 0.23 -> 23
+    // Convert 0.23 -> 23 string
     private func convertCents(_ centPart: Double) -> String {
         let cents: String
         if centPart == 0 {
