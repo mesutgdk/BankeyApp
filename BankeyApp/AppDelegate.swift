@@ -30,34 +30,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loginViewController.delegate = self
         onboardingContainerVC.delegate = self
         
-        let vc = mainVC
-        vc.setStatusBar()
         
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().backgroundColor = appColor
-        
-        window?.rootViewController = vc
-
+        displayLogin()
+    
 //        mainVC.selectedIndex = 1 // it is the opening VC, first VC is seen, u can choose
         
         return true
     }
-}
-extension AppDelegate: LoginViewControllerDelegate{
-    func didLogin() {
-//     print("foo - Did login")
+    
+    private func displayLogin(){
+        setRootVC(loginViewController)
+    }
+    
+    private func displayNextScreen(){
         if LocalState.hasOnboard {
+            prepareMainView()
             setRootVC(mainVC)
         } else {
             setRootVC(onboardingContainerVC)
         }
     }
+    
+    private func prepareMainView(){
+        mainVC.setStatusBar()
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+    }
+}
+extension AppDelegate: LoginViewControllerDelegate{
+    func didLogin() {
+        displayNextScreen()
+    }
 }
 
 extension AppDelegate: OnboardingVCDelegate {
     func didFinishOnboarding() {
-        setRootVC(accountSummaryVC)
         LocalState.hasOnboard = true
+        prepareMainView()
+        setRootVC(mainVC)
     }
 }
 extension AppDelegate: LogoutDelegate {
