@@ -25,6 +25,7 @@
 		63BA175B2A1CF42D0035EE18 /* OnboardingContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA175A2A1CF42D0035EE18 /* OnboardingContainerVC.swift */; };
 		63BA175F2A1D69F00035EE18 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA175E2A1D69F00035EE18 /* OnboardingVC.swift */; };
 		63BFF5622A2B2AF50004BDC7 /* CurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */; };
+		63BFF5642A2B55210004BDC7 /* NSNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5632A2B55210004BDC7 /* NSNotificationName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		63BA175E2A1D69F00035EE18 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		63BFF5562A2B2A0E0004BDC7 /* BankeyUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankeyUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTests.swift; sourceTree = "<group>"; };
+		63BFF5632A2B55210004BDC7 /* NSNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				63ACAF712A227C1E0011EA08 /* UIViewControllers+Utilties.swift */,
 				63A78CFA2A28C51800BDB640 /* Decimal+Utilities.swift */,
 				63A78CFC2A28C55300BDB640 /* CurrencyFormatter.swift */,
+				63BFF5632A2B55210004BDC7 /* NSNotificationName.swift */,
 			);
 			name = UUtilities;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				63ACAF722A227C1E0011EA08 /* UIViewControllers+Utilties.swift in Sources */,
 				63A78CFD2A28C55300BDB640 /* CurrencyFormatter.swift in Sources */,
 				63706AC32A1FFF6D00548FCE /* DummyVC.swift in Sources */,
+				63BFF5642A2B55210004BDC7 /* NSNotificationName.swift in Sources */,
 				63A78CF52A27DD6C00BDB640 /* AccountSummaryCell.swift in Sources */,
 				63BA175B2A1CF42D0035EE18 /* OnboardingContainerVC.swift in Sources */,
 				63BA175F2A1D69F00035EE18 /* OnboardingVC.swift in Sources */,
