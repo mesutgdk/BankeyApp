@@ -173,34 +173,49 @@ extension LoginViewController {
     private func configureView(withMessage message: String) {
         errorMessageLabel.isHidden = false
         errorMessageLabel.text = message
+        shakeButton()
     }
 }
 
 // MARK: - Animations - to animate labels
 extension LoginViewController{
     
-        private func animate(){
-            
-            let duration = 0.8
-            
+    private func animate(){
+        let duration = 0.8
+        
         let animator1 = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
             self.appTitleLeadingAnchor?.constant = self.leadingEdgeOnScreen
             self.view.layoutIfNeeded()
         }
-            animator1.startAnimation()
+        animator1.startAnimation()
         
         let animator2 = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
             self.appDeskriptionLeadingAnchor?.constant = self.leadingEdgeOnScreen
             self.view.layoutIfNeeded()
         }
-            animator2.startAnimation(afterDelay: 0.2)
+        animator2.startAnimation(afterDelay: 0.2)
         
         let animator3 = UIViewPropertyAnimator(duration: duration*2, curve: .easeInOut) {
             self.appNameLabel.alpha = 1
             self.appDescribeLabel.alpha = 1
             self.view.layoutIfNeeded()
         }
-            animator3.startAnimation(afterDelay: 0.3)
+        animator3.startAnimation(afterDelay: 0.3)
+        
+    }
+}
+// MARK: - Animation - Shake button if wrong answer
+extension LoginViewController{
+    
+    private func shakeButton(){
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position.x"
+        animation.values = [0, 10, -10, 10, 0]
+        animation.keyTimes = [0, 0.16, 0.5, 0.83, 1]
+        animation.duration = 0.3
+        
+        animation.isAdditive = true
+        signInButton.layer.add(animation, forKey: "shake")
         
     }
 }
