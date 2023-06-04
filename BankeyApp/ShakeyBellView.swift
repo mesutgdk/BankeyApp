@@ -48,7 +48,7 @@ extension ShakeyBellView {
     func setup(){
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
     }
-    @objc func imageVlewTapped(_ recognizer: UITapGestureRecognizer){
+    @objc func imageViewTapped(_ recognizer: UITapGestureRecognizer){
         
     }
     
