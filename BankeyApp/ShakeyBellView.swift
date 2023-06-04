@@ -14,9 +14,9 @@ class ShakeyBellView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         style()
         layout()
+        setup() // to be tapable
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -25,6 +25,7 @@ class ShakeyBellView: UIView {
         return CGSize(width: 48, height: 48)
     }
 }
+// ShakeyBell
 extension ShakeyBellView {
     func style(){
         addSubview(imageView)
@@ -44,4 +45,11 @@ extension ShakeyBellView {
             imageView.widthAnchor.constraint(equalToConstant: 24)
         ])
     }
+    func setup(){
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
+    }
+    @objc func imageVlewTapped(_ recognizer: UITapGestureRecognizer){
+        
+    }
+    
 }
