@@ -27,7 +27,7 @@ struct Profile: Codable {
 }
 
 extension AccountSummaryViewController{
-    func fetchProfile(forUserId userID:String, completion: @escaping (Result<Profile,NetworkError>)->Void) {
+    func fetchProfile(forUserId userID:String, completion: @escaping (Result<Profile,NetworkError>) -> Void) {
         
         let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userID)")!
         URLSession.shared.dataTask(with: url) { data, responce, error in
@@ -52,4 +52,41 @@ extension AccountSummaryViewController{
     
 }
 
+struct Account: Codable {
+    let id: String
+    let type: AccountType // make AccountType "Codable"
+    let name: String
+    let amount: Decimal
+    let createdDateTime: Date
+}
+
+extension AccountSummaryViewController{
+    func fetchAccounts(forUserId userID: String, comletion: @escaping (Result<[Account],NetworkError>) -> Void) {
+        let url = URL(string: "https://fierce-retreat-36855.herokuapp.com/bankey/profile/\(userID)/accounts")!
+        
+        URLSession.shared.dataTask(with: url) { data, responce, error in
+            DispatchQueue.main.async {
+                
+                guard let data = data, error == nil else {
+                    comletion(.failure(.serverError))
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    
+                    let accounts = try decoder.decode([Account].self, from: data)
+                    comletion(.success(accounts))
+                } catch {
+                    comletion(.failure(.decodingError))
+                }
+            }
+        }.resume()
+        
+        
+    }
+    
+    
+}
 

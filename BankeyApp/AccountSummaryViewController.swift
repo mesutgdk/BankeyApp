@@ -11,11 +11,12 @@ class AccountSummaryViewController: UIViewController {
     
     // Request Models
     var profile: Profile?
+    var accounts: [Account] = []
     
     // View Models
     var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
     
-    var accounts: [AccountSummaryCell.ViewModel] = []
+    var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
     
     
     var tableView = UITableView()
@@ -83,7 +84,7 @@ extension AccountSummaryViewController: UITableViewDataSource{
         guard !accounts.isEmpty else { return UITableViewCell() }
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: AccountSummaryCell.reuseID, for: indexPath) as! AccountSummaryCell
-                let account = accounts[indexPath.row]
+                let account = accountCellViewModels[indexPath.row]
                 cell.configure(with: account)
                 
                 return cell
@@ -96,35 +97,6 @@ extension AccountSummaryViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return AccountSummaryCell.rowHeight
-    }
-}
-extension AccountSummaryViewController{
-    private func fetchAccounts(){
-        let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
-                                                            accountName: "Basic Savings",
-                                                        money: 929466.23)
-        let chequing = AccountSummaryCell.ViewModel(accountType: .Banking,
-                                                    accountName: "No-Fee All-In Chequing",
-                                                    money: 17562.44)
-        let visa = AccountSummaryCell.ViewModel(accountType: .CreditCard,
-                                                       accountName: "Visa Avion Card",
-                                                       money: 412.83)
-        let masterCard = AccountSummaryCell.ViewModel(accountType: .CreditCard,
-                                                       accountName: "Student Mastercard",
-                                                       money: 50.83)
-        let investment1 = AccountSummaryCell.ViewModel(accountType: .Investment,
-                                                       accountName: "Tax-Free Saver",
-                                                       money: 2000.00)
-        let investment2 = AccountSummaryCell.ViewModel(accountType: .Investment,
-                                                       accountName: "Growth Fund",
-                                                       money: 15000.00)
-
-        accounts.append(savings)
-        accounts.append(chequing)
-        accounts.append(visa)
-        accounts.append(masterCard)
-        accounts.append(investment1)
-        accounts.append(investment2)
     }
 }
 extension AccountSummaryViewController {
@@ -154,11 +126,28 @@ extension AccountSummaryViewController {
             }
         }
         
-        fetchAccounts()
+        fetchAccounts(forUserId: "1") { result in
+            switch result {
+            case .success(let accounts):
+                self.accounts = accounts
+                self.configureTableCell(with: accounts)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     private func configureTableHeaderView(with: Profile){
         let vm = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Bonjuor", name: profile!.firstName, date: Date())
         self.headerView.configure(viewModel: vm)
+    }
+    
+    private func configureTableCell(with accounts: [Account]) {
+        accountCellViewModels = accounts.map {
+            AccountSummaryCell.ViewModel(accountType: $0.type,
+                                         accountName: $0.name,
+                                         money: $0.amount)
+        }
     }
 }
 
