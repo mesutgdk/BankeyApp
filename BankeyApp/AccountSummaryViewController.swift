@@ -9,8 +9,18 @@ import UIKit
 
 class AccountSummaryViewController: UIViewController {
     
+    // Request Models
+    var profile: Profile?
+    
+    // View Models
+    var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
+    
     var accounts: [AccountSummaryCell.ViewModel] = []
-    let tableView = UITableView()
+    
+    
+    var tableView = UITableView()
+    var headerView = AccountSummaryHeaderView(frame: .zero)
+
     
     lazy var logoutBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
@@ -21,6 +31,7 @@ class AccountSummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupNavigationBar()
     }
 }
 
@@ -28,8 +39,8 @@ extension AccountSummaryViewController{
     private func setup(){
         setupTableView()
         setupTableHeaderView()
-        fetch()
-        setupNavigationBar()
+//        fetchAccounts()
+        fetchDataAndLoadView()
     }
     
     private func setupTableView(){
@@ -54,11 +65,11 @@ extension AccountSummaryViewController{
     
     private func setupTableHeaderView(){
         
-        let header = AccountSummaryHeaderView(frame: .zero)
-        let size = header.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        header.frame.size = size
+        
+        let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        headerView.frame.size = size
        
-        tableView.tableHeaderView = header
+        tableView.tableHeaderView = headerView
         
     }
 }
@@ -88,7 +99,7 @@ extension AccountSummaryViewController: UITableViewDelegate{
     }
 }
 extension AccountSummaryViewController{
-    private func fetch(){
+    private func fetchAccounts(){
         let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
                                                             accountName: "Basic Savings",
                                                         money: 929466.23)
@@ -129,5 +140,25 @@ extension AccountSummaryViewController {
         NotificationCenter.default.post(name: .logout, object: nil)
     }
 }
-
+// Networking
+extension AccountSummaryViewController {
+    private func fetchDataAndLoadView() {
+        fetchProfile(forUserId: "1") { result in
+            switch result {
+            case .success(let profile) :
+                self.profile = profile
+                self.configureTableHeaderView(with: profile)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        fetchAccounts()
+    }
+    private func configureTableHeaderView(with: Profile){
+        let vm = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Bonjuor", name: profile!.firstName, date: Date())
+        self.headerView.configure(viewModel: vm)
+    }
+}
 
