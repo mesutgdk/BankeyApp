@@ -3,7 +3,7 @@ import XCTest
 
 @testable import BankeyApp
 
-class AccountTests: XCTestCase {
+class ProfileTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
