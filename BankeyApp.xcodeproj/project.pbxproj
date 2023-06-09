@@ -30,6 +30,7 @@
 		63BFF5692A2BD12A0004BDC7 /* ShakeyBellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5682A2BD12A0004BDC7 /* ShakeyBellView.swift */; };
 		63BFF5DF2A31FAE90004BDC7 /* Date+Utilies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5DE2A31FAE90004BDC7 /* Date+Utilies.swift */; };
 		63BFF5E12A31FE4C0004BDC7 /* AccountSummaryVC+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5E02A31FE4C0004BDC7 /* AccountSummaryVC+Networking.swift */; };
+		63BFF5E52A32709B0004BDC7 /* ProfileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5E42A32709B0004BDC7 /* ProfileTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		63BFF5682A2BD12A0004BDC7 /* ShakeyBellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeyBellView.swift; sourceTree = "<group>"; };
 		63BFF5DE2A31FAE90004BDC7 /* Date+Utilies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utilies.swift"; sourceTree = "<group>"; };
 		63BFF5E02A31FE4C0004BDC7 /* AccountSummaryVC+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryVC+Networking.swift"; sourceTree = "<group>"; };
+		63BFF5E42A32709B0004BDC7 /* ProfileTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +198,8 @@
 		63BFF5572A2B2A0E0004BDC7 /* BankeyUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */,
+				63BFF5E32A32707E0004BDC7 /* Account Summory */,
+				63BFF5E22A3270670004BDC7 /* Utilies */,
 			);
 			path = BankeyUnitTests;
 			sourceTree = "<group>";
@@ -207,6 +210,22 @@
 				63BFF5682A2BD12A0004BDC7 /* ShakeyBellView.swift */,
 			);
 			name = Components;
+			sourceTree = "<group>";
+		};
+		63BFF5E22A3270670004BDC7 /* Utilies */ = {
+			isa = PBXGroup;
+			children = (
+				63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */,
+			);
+			path = Utilies;
+			sourceTree = "<group>";
+		};
+		63BFF5E32A32707E0004BDC7 /* Account Summory */ = {
+			isa = PBXGroup;
+			children = (
+				63BFF5E42A32709B0004BDC7 /* ProfileTest.swift */,
+			);
+			path = "Account Summory";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63BFF5622A2B2AF50004BDC7 /* CurrencyFormatterTests.swift in Sources */,
+				63BFF5E52A32709B0004BDC7 /* ProfileTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
