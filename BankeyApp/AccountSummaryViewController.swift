@@ -18,10 +18,10 @@ class AccountSummaryViewController: UIViewController {
     
     var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
     
-    
+    //components
     var tableView = UITableView()
     var headerView = AccountSummaryHeaderView(frame: .zero)
-
+    let refreshControl = UIRefreshControl()
     
     lazy var logoutBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
@@ -40,6 +40,7 @@ extension AccountSummaryViewController{
         setupTableView()
         setupTableHeaderView()
         setupNavigationBar()
+        setupRefreshControl()
         fetchData()
     }
     
@@ -73,6 +74,20 @@ extension AccountSummaryViewController{
         
     }
 }
+extension AccountSummaryViewController {
+    
+    func setupNavigationBar(){
+        navigationItem.rightBarButtonItem = logoutBarButtonItem
+    }
+    
+    func setupRefreshControl(){
+        refreshControl.tintColor = appColor
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    
+}
 extension AccountSummaryViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,19 +113,8 @@ extension AccountSummaryViewController: UITableViewDelegate{
         return AccountSummaryCell.rowHeight
     }
 }
-extension AccountSummaryViewController {
-    
-    func setupNavigationBar(){
-        navigationItem.rightBarButtonItem = logoutBarButtonItem
-    }
-}
-// MARK: Actions
 
-extension AccountSummaryViewController {
-    @objc func logoutTapped(sender: UIButton) {
-        NotificationCenter.default.post(name: .logout, object: nil)
-    }
-}
+
 // Networking
 extension AccountSummaryViewController {
     private func fetchData() {
@@ -143,6 +147,7 @@ extension AccountSummaryViewController {
         // this code only run after upers are completed
         group.notify(queue: .main) {
             self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
     
@@ -159,4 +164,13 @@ extension AccountSummaryViewController {
         }
     }
 }
+// MARK: Actions
 
+extension AccountSummaryViewController {
+    @objc func logoutTapped(sender: UIButton) {
+        NotificationCenter.default.post(name: .logout, object: nil)
+    }
+    @objc func refreshContent(){
+        fetchData()
+    }
+}
