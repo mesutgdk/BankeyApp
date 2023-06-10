@@ -121,8 +121,10 @@ extension AccountSummaryViewController {
         
         let group = DispatchGroup()
         
+        // testing - random number selector
+        let userId = String(Int.random(in: 1..<4))
         group.enter()
-        fetchProfile(forUserId: "1") { result in
+        fetchProfile(forUserId: userId) { result in
             switch result {
             case .success(let profile) :
                 self.profile = profile
@@ -134,7 +136,7 @@ extension AccountSummaryViewController {
         }
         
         group.enter()
-        fetchAccounts(forUserId: "1") { result in
+        fetchAccounts(forUserId: userId) { result in
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
