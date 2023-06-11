@@ -144,7 +144,6 @@ extension AccountSummaryViewController {
             switch result {
             case .success(let profile) :
                 self.profile = profile
-                self.configureTableHeaderView(with: profile)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -156,7 +155,6 @@ extension AccountSummaryViewController {
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
-                self.configureTableCell(with: accounts)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -164,9 +162,14 @@ extension AccountSummaryViewController {
         }
         // this code only run after upers are completed
         group.notify(queue: .main) {
-            self.isLoaded = true
-            self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
+
+            guard let profile = self.profile else {return}
+            
+            self.isLoaded = true
+            self.configureTableHeaderView(with: profile)
+            self.configureTableCell(with: self.accounts)
+            self.tableView.reloadData()
         }
     }
     
