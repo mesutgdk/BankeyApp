@@ -190,6 +190,16 @@ extension AccountSummaryViewController {
         NotificationCenter.default.post(name: .logout, object: nil)
     }
     @objc func refreshContent(){
+        reset()
+        setupSkeleton()
+        tableView.reloadData()
         fetchData()
     }
+    
+    private func reset (){
+        profile = nil
+        accounts = []
+        isLoaded = false
+    }
+    
 }
