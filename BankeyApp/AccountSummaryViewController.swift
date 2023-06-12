@@ -142,8 +142,19 @@ extension AccountSummaryViewController {
         
         // testing - random number selector
         let userId = String(Int.random(in: 1..<4))
+        
+        fetchProfile(group: group, userId: userId)
+        fetchAccount(group: group, userId: userId)
+       
+        // this code only run after upers are completed
+        group.notify(queue: .main) {
+            self.reloadView()
+        }
+    }
+    
+    private func fetchProfile(group:DispatchGroup, userId: String){
         group.enter()
-            profileManager.fetchProfile(forUserId: userId) { result in
+        profileManager.fetchProfile(forUserId: userId) { result in
             switch result {
             case .success(let profile) :
                 self.profile = profile
@@ -153,7 +164,9 @@ extension AccountSummaryViewController {
             }
             group.leave()
         }
-        
+    }
+    
+    private func fetchAccount(group: DispatchGroup, userId: String){
         group.enter()
         fetchAccounts(forUserId: userId) { result in
             switch result {
@@ -161,21 +174,21 @@ extension AccountSummaryViewController {
                 self.accounts = accounts
             case .failure(let error):
                 self.displayError(error)
-//                print(error.localizedDescription)
+//              print(error.localizedDescription)
             }
             group.leave()
         }
-        // this code only run after upers are completed
-        group.notify(queue: .main) {
-            self.tableView.refreshControl?.endRefreshing()
+    }
+    
+    private func reloadView(){
+        self.tableView.refreshControl?.endRefreshing()
 
-            guard let profile = self.profile else {return}
-            
-            self.isLoaded = true
-            self.configureTableHeaderView(with: profile)
-            self.configureTableCell(with: self.accounts)
-            self.tableView.reloadData()
-        }
+        guard let profile = self.profile else {return}
+        
+        self.isLoaded = true
+        self.configureTableHeaderView(with: profile)
+        self.configureTableCell(with: self.accounts)
+        self.tableView.reloadData()
     }
     
     private func configureTableHeaderView(with: Profile){
@@ -241,3 +254,9 @@ extension AccountSummaryViewController {
         isLoaded = false
     }
 }
+// MARK: - Unit Testing
+extension AccountSummaryViewController{
+    func titleAndMessageForTesting(for error: NetworkError) -> (String,String) {
+        return titleAndMessage(for: error)
+    }
+} // it gives the access to a private func to be tested
