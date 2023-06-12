@@ -146,6 +146,9 @@ extension AccountSummaryViewController {
                 self.profile = profile
             case .failure(let error):
                 print(error.localizedDescription)
+                
+                self.displayError(error)
+                
             }
             group.leave()
         }
@@ -185,6 +188,31 @@ extension AccountSummaryViewController {
                                          money: $0.amount)
         }
     }
+    // Error mesajları: switch error la hangi error durumuna göre showFunc'a girdi veriyoruz
+    private func displayError( _ error : NetworkError){
+        
+        let title:String
+        let message:String
+        
+        switch error {
+        case .decodingError:
+            title = "Decoding Error"
+            message = "We could not process your request. Please try again."
+        case .serverError:
+            title = "Server Error"
+            message = "Ensure you are connected to the internet. Please try again!"
+        }
+        self.showErrorAlert(title: title, message: message)
+    }
+    // 
+    private func showErrorAlert(title: String, message:String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 // MARK: Actions
 
