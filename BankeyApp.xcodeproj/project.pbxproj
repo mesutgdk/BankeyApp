@@ -24,6 +24,8 @@
 		63ACAF772A2293E50011EA08 /* AccountSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACAF762A2293E50011EA08 /* AccountSummaryViewController.swift */; };
 		63B11B022A35E5E7002C5561 /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B11B012A35E5E7002C5561 /* SkeletonLoadable.swift */; };
 		63B11B042A35E73F002C5561 /* SkeletonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B11B032A35E73F002C5561 /* SkeletonCell.swift */; };
+		63B11B072A36E869002C5561 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B11B062A36E869002C5561 /* ProfileManager.swift */; };
+		63B11B092A36EC0E002C5561 /* AccountSummaryVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B11B082A36EC0E002C5561 /* AccountSummaryVCTests.swift */; };
 		63BA175B2A1CF42D0035EE18 /* OnboardingContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA175A2A1CF42D0035EE18 /* OnboardingContainerVC.swift */; };
 		63BA175F2A1D69F00035EE18 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA175E2A1D69F00035EE18 /* OnboardingVC.swift */; };
 		63BFF5622A2B2AF50004BDC7 /* CurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFF5612A2B2AF50004BDC7 /* CurrencyFormatterTests.swift */; };
@@ -66,6 +68,8 @@
 		63ACAF762A2293E50011EA08 /* AccountSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryViewController.swift; sourceTree = "<group>"; };
 		63B11B012A35E5E7002C5561 /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
 		63B11B032A35E73F002C5561 /* SkeletonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonCell.swift; sourceTree = "<group>"; };
+		63B11B062A36E869002C5561 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		63B11B082A36EC0E002C5561 /* AccountSummaryVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryVCTests.swift; sourceTree = "<group>"; };
 		63BA175A2A1CF42D0035EE18 /* OnboardingContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerVC.swift; sourceTree = "<group>"; };
 		63BA175E2A1D69F00035EE18 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		63BFF5562A2B2A0E0004BDC7 /* BankeyUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankeyUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,8 +194,17 @@
 				63BFF5E02A31FE4C0004BDC7 /* AccountSummaryVC+Networking.swift */,
 				63A78CF62A27DEB900BDB640 /* Header */,
 				63A78CF92A27DEE400BDB640 /* Cell */,
+				63B11B052A36E76A002C5561 /* Networking */,
 			);
 			name = AccountSummary;
+			sourceTree = "<group>";
+		};
+		63B11B052A36E76A002C5561 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				63B11B062A36E869002C5561 /* ProfileManager.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		63BA17592A1CF3980035EE18 /* OnBoarding */ = {
@@ -233,6 +246,7 @@
 			children = (
 				63BFF5E42A32709B0004BDC7 /* ProfileTest.swift */,
 				63BFF5E82A32F7DC0004BDC7 /* AccountTests.swift */,
+				63B11B082A36EC0E002C5561 /* AccountSummaryVCTests.swift */,
 			);
 			path = "Account Summory";
 			sourceTree = "<group>";
@@ -342,6 +356,7 @@
 				634C437D2A194996009E46ED /* LoginView.swift in Sources */,
 				63B11B042A35E73F002C5561 /* SkeletonCell.swift in Sources */,
 				63ACAF772A2293E50011EA08 /* AccountSummaryViewController.swift in Sources */,
+				63B11B072A36E869002C5561 /* ProfileManager.swift in Sources */,
 				63A78CED2A2537A400BDB640 /* AccountSummaryHeaderView.swift in Sources */,
 				63706AC62A21E5B100548FCE /* LocalState.swift in Sources */,
 				63B11B022A35E5E7002C5561 /* SkeletonLoadable.swift in Sources */,
@@ -368,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63BFF5622A2B2AF50004BDC7 /* CurrencyFormatterTests.swift in Sources */,
+				63B11B092A36EC0E002C5561 /* AccountSummaryVCTests.swift in Sources */,
 				63BFF5E92A32F7DC0004BDC7 /* AccountTests.swift in Sources */,
 				63BFF5E52A32709B0004BDC7 /* ProfileTest.swift in Sources */,
 			);

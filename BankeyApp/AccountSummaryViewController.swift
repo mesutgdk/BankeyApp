@@ -18,10 +18,13 @@ class AccountSummaryViewController: UIViewController {
     
     var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
     
-    //components
+    // Components
     var tableView = UITableView()
     var headerView = AccountSummaryHeaderView(frame: .zero)
     let refreshControl = UIRefreshControl()
+    
+    // Networking
+    var profileManager: ProfileManageable = ProfileManager()
     
     var isLoaded = false
     
@@ -140,7 +143,7 @@ extension AccountSummaryViewController {
         // testing - random number selector
         let userId = String(Int.random(in: 1..<4))
         group.enter()
-        fetchProfile(forUserId: userId) { result in
+            profileManager.fetchProfile(forUserId: userId) { result in
             switch result {
             case .success(let profile) :
                 self.profile = profile
@@ -187,9 +190,14 @@ extension AccountSummaryViewController {
                                          money: $0.amount)
         }
     }
-    // Error mesajları: switch error la hangi error durumuna göre showFunc'a girdi veriyoruz
+    /* Error mesajları: switch error la hangi error durumuna göre showFunc'a girdi veriyoruz
+     mesajı her yerde kullanabilmek için ayrı func yaptık, teste tabi tuabilmek için girdileri ayrdık, ayrı bi func yaptık, sırasıyla displayerror-titleandmessage-showerrorlaert çağrılıyor
+     */
     private func displayError( _ error : NetworkError){
-        
+        let titleAndMessage = titleAndMessage(for: error)
+        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+    private func titleAndMessage(for error: NetworkError) -> (String,String) {
         let title:String
         let message:String
         
@@ -201,9 +209,10 @@ extension AccountSummaryViewController {
             title = "Server Error"
             message = "Ensure you are connected to the internet. Please try again!"
         }
-        self.showErrorAlert(title: title, message: message)
+       return (title,message)
     }
-    // 
+    
+    // common func to call for showing alert
     private func showErrorAlert(title: String, message:String){
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -231,5 +240,4 @@ extension AccountSummaryViewController {
         accounts = []
         isLoaded = false
     }
-    
 }
