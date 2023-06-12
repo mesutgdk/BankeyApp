@@ -145,10 +145,8 @@ extension AccountSummaryViewController {
             case .success(let profile) :
                 self.profile = profile
             case .failure(let error):
-                print(error.localizedDescription)
-                
                 self.displayError(error)
-                
+//                print(error.localizedDescription)
             }
             group.leave()
         }
@@ -159,7 +157,8 @@ extension AccountSummaryViewController {
             case .success(let accounts):
                 self.accounts = accounts
             case .failure(let error):
-                print(error.localizedDescription)
+                self.displayError(error)
+//                print(error.localizedDescription)
             }
             group.leave()
         }
