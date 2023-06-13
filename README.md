@@ -1,5 +1,5 @@
 # BankeyApp
-It is an Enterprize Account app demo. It is created to understand and exercise logic and mechanics. While doing this app, i have used the following list
+It is an Enterprize Account app demo. It is created to understand and exercise logic and mechanics. While doing this app, i have used the following list:
 
 ## Key Features
 - Login Screen - No storyboards, Auto Layout, Dynamic colors, Scalable fonts, Activity indicator
