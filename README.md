@@ -15,11 +15,11 @@ It is an Enterprize Account app demo. It is created to understand and exercise l
 - Unit Test, Dependency Injection - Business logic, Edge cases and boundery conditions, Off-by-one Errors, Permutations-Calculations, Assumptions
 - Unit Tests For - Profiletest, AccountTest, AccountSummuryNetworkTest, testing the logic, testing the alert
 
-## Login Screen
+## Login Screen - Core Graphics
 
 ![login](https://github.com/mesutgdk/BankeyApp/assets/112901255/32c52a82-f802-4773-ac93-8c1a13222b1c)
 
-## Onboarding
+## Onboarding - UIPageViewController
 
 ![onboarding](https://github.com/mesutgdk/BankeyApp/assets/112901255/b4b360bf-2725-4882-9c53-d0851f952b1f)
 
@@ -35,7 +35,7 @@ It is an Enterprize Account app demo. It is created to understand and exercise l
 
 <img width="151" alt="without Skeleton Loader" src="https://github.com/mesutgdk/BankeyApp/assets/112901255/895dea71-4645-4d7e-a405-3c5d8ba052f5">
 
-## Error Handling
+## Error Handling - Pop open, Alert and Display results
 
 <img width="151" alt="ServerError" src="https://github.com/mesutgdk/BankeyApp/assets/112901255/edeb86ce-99f4-4405-99d0-62a7a5bb5338">
 
