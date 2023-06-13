@@ -2,10 +2,10 @@
 It is an Enterprize Account app demo. It is created to understand and exercise logic and mechanics. While doing this app, i have used the following list:
 
 ## Key Features
-- Login Screen - No storyboards, Auto Layout, Dynamic colors, Scalable fonts, Activity indicator
+- Login Screen - No storyboards, Auto Layout, Dynamic colors, Scalable fonts, Activity indicator, Core Graphics
 - Onboarding - UIPageViewController, Protocol delegate, User defaults
 - Tableview - Header, Custom cells with no storyboards
-- AccountSummary - Programatic tablecell, NSAtrributedString, Leverage enums, Currency formatting decimals, Status/ NavBar colors
+- AccountSummary - Programatic tablecell, NSAtrributedString, Leverage enums, Currency formatting decimals, Status/ NavBar colors, Core Animation
 - Networking - Grouping network calls together/DispatchGroup
 - Pull Down - Refresher/UIRefreshController
 - Skeleton Loader -  Simulating slow network calls and signal app loading with skeleton loaders
