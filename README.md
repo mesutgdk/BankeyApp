@@ -2,15 +2,18 @@
 It is an Enterprize Account Demo app. It is created to understand and exercise logic and mechanics. While doing this app, i have used the following list
 
 ## Key Features
-- Login Screen
-- Onboarding
-- Tableview with header, custom cells with no storyboards
-- Networking
-- Pull Down - Refresher
-- Skeleton Loader
+- Login Screen - No storyboards, Auto Layout, Dynamic colors, Scalable fonts, Activity indicator
+- Onboarding - UIPageViewController, Protocol delegate, User defaults
+- Tableview - Header, Custom cells with no storyboards
+- AccountSummary - Programatic tablecell, NSAtrributedString, Leverage enums, Currency formatting decimals, Status/ NavBar colors
+- Networking - Grouping network calls together/DispatchGroup
+- Pull Down - Refresher/UIRefreshController
+- Skeleton Loader -  Simulating slow network calls and signal app loading with skeleton loaders
 - ShakeyBell - Notification Effects
-- Error Handling - Pop open, alert and display results
-- Unit Test, Dependency Injection
+- Notification Center - Observer Pattern, Limits of protocol-delegate, The mechanics behind Notificationcenter, Where and when to use this pattern
+- Error Handling - Pop open, Alert and Display results
+- Unit Test, Dependency Injection - Business logic, Edge cases and boundery conditions, Off-by-one Errors, Permutations-Calculations, Assumptions
+- Unit Tests For - Profiletest, AccountTest, AccountSummuryNetworkTest, testing the logic, testing the alert
 
 ## Login Screen
 
