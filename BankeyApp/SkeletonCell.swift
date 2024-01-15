@@ -11,11 +11,41 @@ extension SkeletonCell: SkeletonLoadable {}
 
 class SkeletonCell: UITableViewCell {
     
-    let typeLabel = UILabel()
-    let underlineView = UIView()
-    let nameLabel = UILabel()
+    let typeLabel : UILabel = {
+        let typeLabel = UILabel()
+        typeLabel.translatesAutoresizingMaskIntoConstraints = false
+        typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        typeLabel.adjustsFontForContentSizeCategory = true
+        typeLabel.text = "           "
+        return typeLabel
+    }()
+    
+    let underlineView : UIView = {
+        let underlineView = UIView()
+        underlineView.translatesAutoresizingMaskIntoConstraints = false
+        underlineView.backgroundColor = appColor
+        return underlineView
+    }()
+    
+    let nameLabel:UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.text = "           "
+        return nameLabel
+    }()
 
-    let balanceStackView = UIStackView()
+    let balanceStackView : UIStackView = {
+        let balanceStackView = UIStackView()
+        
+        balanceStackView.translatesAutoresizingMaskIntoConstraints = false
+        balanceStackView.axis = .vertical
+        balanceStackView.spacing = 4
+        return balanceStackView
+    }()
+    
+    
     let balanceLabel = UILabel()
     let balanceAmountLabel = UILabel()
         
@@ -62,22 +92,17 @@ class SkeletonCell: UITableViewCell {
 extension SkeletonCell {
     
     private func setup() {
-        typeLabel.translatesAutoresizingMaskIntoConstraints = false
-        typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-        typeLabel.adjustsFontForContentSizeCategory = true
-        typeLabel.text = "           "
-                
-        underlineView.translatesAutoresizingMaskIntoConstraints = false
-        underlineView.backgroundColor = appColor
+        contentView.addSubview(typeLabel)
+        contentView.addSubview(underlineView)
+        contentView.addSubview(nameLabel)
+        
+        balanceStackView.addArrangedSubview(balanceLabel)
+        balanceStackView.addArrangedSubview(balanceAmountLabel)
+        
+        contentView.addSubview(balanceStackView)
+        contentView.addSubview(chevronImageView)
 
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.text = "           "
 
-        balanceStackView.translatesAutoresizingMaskIntoConstraints = false
-        balanceStackView.axis = .vertical
-        balanceStackView.spacing = 4
 
         balanceLabel.translatesAutoresizingMaskIntoConstraints = false
         balanceLabel.font = UIFont.preferredFont(forTextStyle: .body)
@@ -129,15 +154,7 @@ extension SkeletonCell {
     }
     
     private func layout() {
-        contentView.addSubview(typeLabel)
-        contentView.addSubview(underlineView)
-        contentView.addSubview(nameLabel)
-        
-        balanceStackView.addArrangedSubview(balanceLabel)
-        balanceStackView.addArrangedSubview(balanceAmountLabel)
-        
-        contentView.addSubview(balanceStackView)
-        contentView.addSubview(chevronImageView)
+
 
         NSLayoutConstraint.activate([
             typeLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
