@@ -11,20 +11,35 @@ class AccountSummaryViewController: UIViewController {
     
     // Request Models
     var profile: Profile?
-    var accounts: [Account] = []
+    lazy var accounts: [Account] = []
     
     // View Models
-    var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
+    private let headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
     
-    var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
+    lazy var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
     
     // Components
-    var tableView = UITableView()
-    var headerView = AccountSummaryHeaderView(frame: .zero)
+    private let tableView : UITableView = {
+        let tableView = UITableView()
+        
+        tableView.backgroundColor = appColor
+        
+        tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.reuseID)
+        tableView.register(SkeletonCell.self, forCellReuseIdentifier: SkeletonCell.reuseID)
+        
+        tableView.rowHeight = AccountSummaryCell.rowHeight
+        tableView.tableFooterView = UIView()
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
+    
+    private let headerView = AccountSummaryHeaderView(frame: .zero)
     let refreshControl = UIRefreshControl()
     
     // Networking
-    var profileManager: ProfileManageable = ProfileManager()
+    private let profileManager: ProfileManageable = ProfileManager()
     
     // Error alert
     lazy var errorAlert: UIAlertController = {
@@ -33,7 +48,7 @@ class AccountSummaryViewController: UIViewController {
         return alert
     }()
     
-    var isLoaded = false
+    lazy var isLoaded = false
     
     lazy var logoutBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
@@ -61,15 +76,7 @@ extension AccountSummaryViewController{
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = appColor
         
-        tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.reuseID)
-        tableView.register(SkeletonCell.self, forCellReuseIdentifier: SkeletonCell.reuseID)
-        
-        tableView.rowHeight = AccountSummaryCell.rowHeight
-        tableView.tableFooterView = UIView()
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -81,7 +88,6 @@ extension AccountSummaryViewController{
     }
     
     private func setupTableHeaderView(){
-        
         
         let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         headerView.frame.size = size
