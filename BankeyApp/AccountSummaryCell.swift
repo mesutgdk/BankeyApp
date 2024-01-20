@@ -30,9 +30,32 @@ class AccountSummaryCell: UITableViewCell {
     let viewModel: ViewModel? = nil
     
     
-    let typeLabel = UILabel()
-    let underlineView = UIView()
-    let nameLabel = UILabel()
+    let typeLabel: UILabel = {
+        let typeLabel = UILabel()
+        typeLabel.translatesAutoresizingMaskIntoConstraints = false
+        typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        typeLabel.adjustsFontForContentSizeCategory = true
+        typeLabel.text = "Account type"
+        return typeLabel
+    }()
+    
+    let underlineView:UIView = {
+        let underlineView = UIView()
+        
+        underlineView.translatesAutoresizingMaskIntoConstraints = false
+        underlineView.backgroundColor = appColor
+        return underlineView
+    }()
+    let nameLabel:UILabel = {
+        let nameLabel =  UILabel()
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.text = "Account name"
+        
+        return nameLabel
+    }()
     
     let moneyStackView = UIStackView()
     let moneyLabel = UILabel()
@@ -69,19 +92,8 @@ extension AccountSummaryCell {
         
         contentView.addSubview(selectedImageView)
 
-        typeLabel.translatesAutoresizingMaskIntoConstraints = false
-        typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
-        typeLabel.adjustsFontForContentSizeCategory = true
-        typeLabel.text = "Account type"
-        
-        underlineView.translatesAutoresizingMaskIntoConstraints = false
-        underlineView.backgroundColor = appColor
-        
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        nameLabel.adjustsFontSizeToFitWidth = true
-        nameLabel.text = "Account name"
-        
+
+     
         moneyStackView.translatesAutoresizingMaskIntoConstraints = false
         moneyStackView.axis = .vertical
         moneyStackView.spacing = 0

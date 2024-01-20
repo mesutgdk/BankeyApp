@@ -30,19 +30,19 @@ class AccountSummaryHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        communInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
+        communInit()
     }
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: 144)
     }
     
-    private func commonInit() {
+    private func communInit() {
         let bundle = Bundle(for: AccountSummaryHeaderView.self)
         bundle.loadNibNamed(nibName, owner: self, options: nil)
         addSubview(contentView)
