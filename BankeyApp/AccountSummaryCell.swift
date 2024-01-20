@@ -14,7 +14,7 @@ enum AccountType: String, Codable {
     case Investment
 }
 
-class AccountSummaryCell: UITableViewCell {
+final class AccountSummaryCell: UITableViewCell {
     
     
     
@@ -22,15 +22,15 @@ class AccountSummaryCell: UITableViewCell {
         let accountType: AccountType
         let accountName: String
         let money: Decimal
-
+        
         var moneyAsAtributedString: NSAttributedString{
             return  CurrencyFormatter().makeAttributedCurrency(money)
         }
     }
-    let viewModel: ViewModel? = nil
+    private let viewModel: ViewModel? = nil
     
     
-    let typeLabel: UILabel = {
+    private   let typeLabel: UILabel = {
         let typeLabel = UILabel()
         typeLabel.translatesAutoresizingMaskIntoConstraints = false
         typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
@@ -39,14 +39,15 @@ class AccountSummaryCell: UITableViewCell {
         return typeLabel
     }()
     
-    let underlineView:UIView = {
+    private let underlineView:UIView = {
         let underlineView = UIView()
         
         underlineView.translatesAutoresizingMaskIntoConstraints = false
         underlineView.backgroundColor = appColor
         return underlineView
     }()
-    let nameLabel:UILabel = {
+    
+    private  let nameLabel:UILabel = {
         let nameLabel =  UILabel()
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -57,12 +58,41 @@ class AccountSummaryCell: UITableViewCell {
         return nameLabel
     }()
     
-    let moneyStackView = UIStackView()
-    let moneyLabel = UILabel()
-    let moneyAmountLabel = UILabel()
+    private  let moneyStackView:UIStackView = {
+        let moneyStackView = UIStackView()
+        
+        moneyStackView.translatesAutoresizingMaskIntoConstraints = false
+        moneyStackView.axis = .vertical
+        moneyStackView.spacing = 0
+        
+        return moneyStackView
+    }()
     
-    let selectedImageView = UIImageView()
-
+    let moneyLabel: UILabel = {
+        let moneyLabel = UILabel()
+        
+        moneyLabel.translatesAutoresizingMaskIntoConstraints = false
+        moneyLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        moneyLabel.textAlignment = .right
+        moneyLabel.adjustsFontSizeToFitWidth = true
+        moneyLabel.text = "Some balance"
+        
+        return moneyLabel
+    }()
+    let moneyAmountLabel: UILabel = {
+        let moneyAmountLabel = UILabel()
+        moneyAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        moneyAmountLabel.textAlignment = .right
+        return moneyAmountLabel
+    }()
+    
+    private let selectedImageView: UIImageView = {
+        let selectedImageView = UIImageView()
+        selectedImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return selectedImageView
+    }()
+    
     static let reuseID = "AccountSummaryCell"
     static let rowHeight: CGFloat = 112
     
@@ -91,27 +121,15 @@ extension AccountSummaryCell {
         contentView.addSubview(moneyStackView)
         
         contentView.addSubview(selectedImageView)
-
-
-     
-        moneyStackView.translatesAutoresizingMaskIntoConstraints = false
-        moneyStackView.axis = .vertical
-        moneyStackView.spacing = 0
         
-        moneyLabel.translatesAutoresizingMaskIntoConstraints = false
-        moneyLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        moneyLabel.textAlignment = .right
-        moneyLabel.adjustsFontSizeToFitWidth = true
-        moneyLabel.text = "Some balance"
-        
-        moneyAmountLabel.translatesAutoresizingMaskIntoConstraints = false
-        moneyAmountLabel.textAlignment = .right
         moneyAmountLabel.attributedText = makeFormattedMoney(dollars: "929,466", cents: "23")
+
         
-        selectedImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+      
         let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
         selectedImageView.image = chevronImage
-
+        
     }
     
     private func layout() {
@@ -138,7 +156,7 @@ extension AccountSummaryCell {
             moneyStackView.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 0),
             moneyStackView.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 4),
             trailingAnchor.constraint(equalToSystemSpacingAfter: moneyStackView.trailingAnchor, multiplier: 4),
-
+            
         ])
         //selectedImageView
         NSLayoutConstraint.activate([
@@ -170,17 +188,17 @@ extension AccountSummaryCell {
         typeLabel.text = vm.accountType.rawValue
         nameLabel.text = vm.accountName
         moneyAmountLabel.attributedText = vm.moneyAsAtributedString
-               
-               switch vm.accountType {
-               case .Banking:
-                   underlineView.backgroundColor = appColor
-                   moneyLabel.text = "Current balance"
-               case .CreditCard:
-                   underlineView.backgroundColor = .systemOrange
-                   moneyLabel.text = "Current balance"
-               case .Investment:
-                   underlineView.backgroundColor = .systemPurple
-                   moneyLabel.text = "Value"
-               }
+        
+        switch vm.accountType {
+        case .Banking:
+            underlineView.backgroundColor = appColor
+            moneyLabel.text = "Current balance"
+        case .CreditCard:
+            underlineView.backgroundColor = .systemOrange
+            moneyLabel.text = "Current balance"
+        case .Investment:
+            underlineView.backgroundColor = .systemPurple
+            moneyLabel.text = "Value"
+        }
     }
 }
