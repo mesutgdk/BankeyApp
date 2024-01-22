@@ -13,9 +13,9 @@ protocol OnboardingVCDelegate: AnyObject {
 
 final class OnboardingContainerVC: UIViewController {
 
-    let pageViewController: UIPageViewController
+    private let pageViewController: UIPageViewController
     var pages = [UIViewController]()
-    var currentVC: UIViewController
+    weak var currentVC: UIViewController?
     let closeButton = UIButton(type: .system)
     
     weak var delegate: OnboardingVCDelegate?
@@ -119,6 +119,9 @@ extension OnboardingContainerVC: UIPageViewControllerDataSource {
     }
 
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        guard currentVC = currentVC else {
+            return
+        }
         return pages.firstIndex(of: self.currentVC) ?? 0
     }
 }
@@ -129,6 +132,4 @@ extension OnboardingContainerVC{
         //To Do
         delegate?.didFinishOnboarding() // it is where we want to fire the delegate
     }
-    
-
 }

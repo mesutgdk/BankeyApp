@@ -8,52 +8,68 @@ import UIKit
 
 final class DummyVC: UIViewController {
     
-    let stackView = UIStackView()
-    let label = UILabel()
-    let logoutButton = UIButton(type: .system)
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        return stackView
+    }()
+    private let label: UILabel = {
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Welcome"
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        return label
+    }()
+    private let logoutButton: UIButton = {
+       let logoutButton = UIButton(type: .system)
+        
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.setTitle("LogOut", for: [])
+        logoutButton.configuration = .filled()
+//        logoutButton.addTarget(self, action: #selector(logoutTapped), for: .primaryActionTriggered)
+        return logoutButton
+    }()
     
     weak var logoutDelegate : LogoutDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
+        setup()
         layout()
     }
 }
+// MARK: - Setup&Layout
 
 extension DummyVC{
-    func style(){
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
-        
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        logoutButton.setTitle("LogOut", for: [])
-        logoutButton.configuration = .filled()
-        logoutButton.addTarget(self, action: #selector(logoutTapped), for: .primaryActionTriggered)
-
-    }
-    
-    func layout(){
+    private func setup(){
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(logoutButton)
         
         view.addSubview(stackView)
-        
+        logoutButtonAction()
+    }
+    
+    private func layout(){
+
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
-   
     }
 }
 extension DummyVC {
-    @objc func logoutTapped (){
+    private func logoutButtonAction(){
+        let action = UIAction{[weak self] _ in
+            self?.logoutTapped()
+        }
+        logoutButton.addAction(action, for: .primaryActionTriggered)
+    }
+    
+    private func logoutTapped (){
         logoutDelegate?.didLogOut()
     }
 }
