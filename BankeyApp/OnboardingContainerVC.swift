@@ -11,7 +11,7 @@ protocol OnboardingVCDelegate: AnyObject {
     func didFinishOnboarding()
 }
 
-class OnboardingContainerVC: UIViewController {
+final class OnboardingContainerVC: UIViewController {
 
     let pageViewController: UIPageViewController
     var pages = [UIViewController]()

@@ -55,7 +55,7 @@ final class SkeletonCell: UITableViewCell {
         return balanceLabel
     }()
     
-    let balanceAmountLabel: UILabel = {
+    private let balanceAmountLabel: UILabel = {
         let balanceAmountLabel = UILabel()
         
         balanceAmountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +64,7 @@ final class SkeletonCell: UITableViewCell {
         return balanceAmountLabel
     }()
         
-    let chevronImageView: UIImageView = {
+    private let chevronImageView: UIImageView = {
         let chevronImageView = UIImageView()
         
         chevronImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,10 +74,10 @@ final class SkeletonCell: UITableViewCell {
     }()
     
     // Gradients
-    let typeLayer = CAGradientLayer()
-    let nameLayer = CAGradientLayer()
-    let balanceLayer = CAGradientLayer()
-    let balanceAmountLayer = CAGradientLayer()
+    private let typeLayer = CAGradientLayer()
+    private let nameLayer = CAGradientLayer()
+    private let balanceLayer = CAGradientLayer()
+    private let balanceAmountLayer = CAGradientLayer()
     
     static let reuseID = "SkeletonCell"
     static let rowHeight: CGFloat = 112
@@ -163,18 +163,21 @@ extension SkeletonCell {
     
     private func layout() {
 
-
         NSLayoutConstraint.activate([
             typeLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
             typeLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+            
             underlineView.topAnchor.constraint(equalToSystemSpacingBelow: typeLabel.bottomAnchor, multiplier: 1),
             underlineView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             underlineView.widthAnchor.constraint(equalTo: typeLabel.widthAnchor), // typelabelin genişliğine eşitleme
             underlineView.heightAnchor.constraint(equalToConstant: 4),
+            
             nameLabel.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 2),
             nameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
+            
             balanceStackView.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 0),
             balanceStackView.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 4),
+            
             trailingAnchor.constraint(equalToSystemSpacingAfter: balanceStackView.trailingAnchor, multiplier: 4),
             chevronImageView.topAnchor.constraint(equalToSystemSpacingBelow: underlineView.bottomAnchor, multiplier: 1),
             trailingAnchor.constraint(equalToSystemSpacingAfter: chevronImageView.trailingAnchor, multiplier: 1)

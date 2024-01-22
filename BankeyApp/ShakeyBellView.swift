@@ -8,19 +8,35 @@
 import Foundation
 import UIKit
 
-class ShakeyBellView: UIView {
+final class ShakeyBellView: UIView {
     
-    let imageView = UIImageView()
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(systemName: "bell.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        imageView.image = image
+        return imageView
+    }()
     
-    let buttonView = UIButton()
+    private let buttonView: UIButton = {
+        let buttonView = UIButton()
+        
+        buttonView.translatesAutoresizingMaskIntoConstraints = false
+        buttonView.backgroundColor = .systemRed
+        buttonView.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        buttonView.setTitle("9", for: .normal)
+        buttonView.setTitleColor(.white, for: .normal)
+        return buttonView
+    }()
     
-    let buttonHeight : CGFloat = 16
+    private let buttonHeight : CGFloat = 16
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        style()
-        layout()
+        
         setup() // to be tapable
+        layout()
+        
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -32,25 +48,19 @@ class ShakeyBellView: UIView {
 // ShakeyBell
 extension ShakeyBellView {
     
-    func style(){
-        // bell
-        translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(systemName: "bell.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        imageView.image = image
-        
-        //button
-        buttonView.translatesAutoresizingMaskIntoConstraints = false
-        buttonView.backgroundColor = .systemRed
-        buttonView.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        buttonView.layer.cornerRadius = buttonHeight/2
-        buttonView.setTitle("9", for: .normal)
-        buttonView.setTitleColor(.white, for: .normal)
-        
-    }
-    func layout() {
+    private func setup() {
         addSubview(imageView)
         addSubview(buttonView)
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
+        
+        imageView.addGestureRecognizer(singleTap)
+        imageView.isUserInteractionEnabled = true
+    }
+
+    private func layout() {
+
         // bell imageView
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -65,13 +75,10 @@ extension ShakeyBellView {
             buttonView.widthAnchor.constraint(equalToConstant: 16),
             buttonView.heightAnchor.constraint(equalToConstant: 16)
         ])
+        buttonView.layer.cornerRadius = buttonHeight/2
+
     }
-    func setup(){
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
-        
-        imageView.addGestureRecognizer(singleTap)
-        imageView.isUserInteractionEnabled = true
-    }
+
 }
 // MARK: - Actions
 extension ShakeyBellView {

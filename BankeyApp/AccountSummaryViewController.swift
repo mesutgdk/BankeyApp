@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountSummaryViewController: UIViewController {
+final class AccountSummaryViewController: UIViewController {
     
     // Request Models
     var profile: Profile?

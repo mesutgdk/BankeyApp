@@ -16,7 +16,7 @@ protocol LoginViewControllerDelegate : AnyObject {
     func didLogin()
 }
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
@@ -34,11 +34,11 @@ class LoginViewController: UIViewController {
     }
     
     //animation
-    var leadingEdgeOnScreen: CGFloat = 16
-    var leadingEdgeOffScreen: CGFloat = -1000
+    lazy var leadingEdgeOnScreen: CGFloat = 16
+    lazy var leadingEdgeOffScreen: CGFloat = -1000
     
-    var appTitleLeadingAnchor : NSLayoutConstraint?
-    var appDeskriptionLeadingAnchor : NSLayoutConstraint?
+    weak var appTitleLeadingAnchor : NSLayoutConstraint?
+    weak var appDeskriptionLeadingAnchor : NSLayoutConstraint?
         
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class OnboardingVC: UIViewController {
+final class OnboardingVC: UIViewController {
     
     let stackView = UIStackView()
     let imageView = UIImageView()
