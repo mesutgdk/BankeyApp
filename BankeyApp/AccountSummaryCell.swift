@@ -16,8 +16,6 @@ enum AccountType: String, Codable {
 
 final class AccountSummaryCell: UITableViewCell {
     
-    
-    
     struct ViewModel {
         let accountType: AccountType
         let accountName: String
@@ -28,7 +26,7 @@ final class AccountSummaryCell: UITableViewCell {
         }
     }
     private let viewModel: ViewModel? = nil
-    
+
     
     private   let typeLabel: UILabel = {
         let typeLabel = UILabel()
@@ -126,10 +124,6 @@ extension AccountSummaryCell {
 
         
         
-      
-        let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
-        selectedImageView.image = chevronImage
-        
     }
     
     private func layout() {
@@ -200,5 +194,8 @@ extension AccountSummaryCell {
             underlineView.backgroundColor = .systemPurple
             moneyLabel.text = "Value"
         }
+        
+        let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
+        selectedImageView.image = chevronImage
     }
 }

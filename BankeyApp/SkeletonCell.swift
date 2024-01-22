@@ -9,9 +9,9 @@ import UIKit
 
 extension SkeletonCell: SkeletonLoadable {}
 
-class SkeletonCell: UITableViewCell {
+final class SkeletonCell: UITableViewCell {
     
-    let typeLabel : UILabel = {
+    private let typeLabel : UILabel = {
         let typeLabel = UILabel()
         typeLabel.translatesAutoresizingMaskIntoConstraints = false
         typeLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
@@ -20,14 +20,14 @@ class SkeletonCell: UITableViewCell {
         return typeLabel
     }()
     
-    let underlineView : UIView = {
+    private let underlineView : UIView = {
         let underlineView = UIView()
         underlineView.translatesAutoresizingMaskIntoConstraints = false
         underlineView.backgroundColor = appColor
         return underlineView
     }()
     
-    let nameLabel:UILabel = {
+    private let nameLabel:UILabel = {
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
@@ -36,7 +36,7 @@ class SkeletonCell: UITableViewCell {
         return nameLabel
     }()
 
-    let balanceStackView : UIStackView = {
+    private let balanceStackView : UIStackView = {
         let balanceStackView = UIStackView()
         
         balanceStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,11 +45,33 @@ class SkeletonCell: UITableViewCell {
         return balanceStackView
     }()
     
+    private let balanceLabel: UILabel = {
+        let balanceLabel = UILabel()
+        balanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        balanceLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        balanceLabel.textAlignment = .right
+        balanceLabel.adjustsFontSizeToFitWidth = true
+        balanceLabel.text = "-Some balance-"
+        return balanceLabel
+    }()
     
-    let balanceLabel = UILabel()
-    let balanceAmountLabel = UILabel()
+    let balanceAmountLabel: UILabel = {
+        let balanceAmountLabel = UILabel()
         
-    let chevronImageView = UIImageView()
+        balanceAmountLabel.translatesAutoresizingMaskIntoConstraints = false
+        balanceAmountLabel.textAlignment = .right
+        balanceAmountLabel.text = "-XXX,XXX.X-"
+        return balanceAmountLabel
+    }()
+        
+    let chevronImageView: UIImageView = {
+        let chevronImageView = UIImageView()
+        
+        chevronImageView.translatesAutoresizingMaskIntoConstraints = false
+        let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
+        chevronImageView.image = chevronImage
+        return chevronImageView
+    }()
     
     // Gradients
     let typeLayer = CAGradientLayer()
@@ -101,22 +123,8 @@ extension SkeletonCell {
         
         contentView.addSubview(balanceStackView)
         contentView.addSubview(chevronImageView)
-
-
-
-        balanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        balanceLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        balanceLabel.textAlignment = .right
-        balanceLabel.adjustsFontSizeToFitWidth = true
-        balanceLabel.text = "-Some balance-"
-
-        balanceAmountLabel.translatesAutoresizingMaskIntoConstraints = false
-        balanceAmountLabel.textAlignment = .right
-        balanceAmountLabel.text = "-XXX,XXX.X-"
         
-        chevronImageView.translatesAutoresizingMaskIntoConstraints = false
-        let chevronImage = UIImage(systemName: "chevron.right")!.withTintColor(appColor, renderingMode: .alwaysOriginal)
-        chevronImageView.image = chevronImage
+      
     }
     
     private func setupLayers() {
