@@ -18,11 +18,52 @@ protocol LoginViewControllerDelegate : AnyObject {
 
 final class LoginViewController: UIViewController {
     
-    let loginView = LoginView()
-    let signInButton = UIButton(type: .system)
-    let errorMessageLabel = UILabel()
-    let appNameLabel = UILabel()
-    let appDescribeLabel = UILabel()
+    private let loginView = LoginView()
+    private let signInButton: UIButton = {
+        let signInButton = UIButton(type: .system)
+        
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        signInButton.configuration = .filled()
+        signInButton.configuration?.imagePadding = 8 // for indicator spacing
+        signInButton.setTitle("Sign In", for: [])
+//        signInButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
+        return signInButton
+    }()
+    
+    private let errorMessageLabel: UILabel = {
+        let errorMessageLabel = UILabel()
+        
+        errorMessageLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorMessageLabel.textAlignment = .center
+        errorMessageLabel.textColor = .systemRed
+        errorMessageLabel.numberOfLines = 0
+        errorMessageLabel.isHidden = true
+        return errorMessageLabel
+    }()
+    private let appNameLabel: UILabel = {
+        let appNameLabel = UILabel()
+        
+        appNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        appNameLabel.textAlignment = .center
+        appNameLabel.adjustsFontForContentSizeCategory = true
+        appNameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        appNameLabel.text = "Bankey"
+        appNameLabel.alpha = 0
+        return appNameLabel
+    }()
+    
+    private let appDescribeLabel: UILabel = {
+        let appDescribeLabel = UILabel()
+        
+        appDescribeLabel.translatesAutoresizingMaskIntoConstraints = false
+        appDescribeLabel.textAlignment = .center
+        appDescribeLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        appDescribeLabel.adjustsFontForContentSizeCategory = true
+        appDescribeLabel.numberOfLines = 0
+        appDescribeLabel.text = "Your premium source for all things banking!"
+        appDescribeLabel.alpha = 0
+        return appDescribeLabel
+    }()
     
     weak var delegate : LoginViewControllerDelegate?
     
@@ -42,7 +83,7 @@ final class LoginViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
+        setup()
         layout()
     }
     
@@ -58,49 +99,22 @@ final class LoginViewController: UIViewController {
 
 }
 extension LoginViewController{
-    private func style() {
+    private func setup() {
         //first of all, turn off this, at start
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
-        signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.configuration = .filled()
-        signInButton.configuration?.imagePadding = 8 // for indicator spacing
-        signInButton.setTitle("Sign In", for: [])
-        signInButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
-        
-        errorMessageLabel.translatesAutoresizingMaskIntoConstraints = false
-        errorMessageLabel.textAlignment = .center
-        errorMessageLabel.textColor = .systemRed
-        errorMessageLabel.numberOfLines = 0
-        errorMessageLabel.isHidden = true
-        
-        appNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        appNameLabel.textAlignment = .center
-        appNameLabel.adjustsFontForContentSizeCategory = true
-        appNameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        appNameLabel.text = "Bankey"
-        appNameLabel.alpha = 0
-
-        
-        appDescribeLabel.translatesAutoresizingMaskIntoConstraints = false
-        appDescribeLabel.textAlignment = .center
-        appDescribeLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        appDescribeLabel.adjustsFontForContentSizeCategory = true
-        appDescribeLabel.numberOfLines = 0
-        appDescribeLabel.text = "Your premium source for all things banking!"
-        appDescribeLabel.alpha = 0
-
-    }
-    
-    private func layout() {
         // everything u made, u must add it
         view.addSubview(appNameLabel)
         view.addSubview(appDescribeLabel)
         view.addSubview(loginView)
         view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
-      
-        
+        createNextButtonAction()
+    
+    }
+    
+    private func layout() {
+
         //LoginView
         NSLayoutConstraint.activate([
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
@@ -143,11 +157,18 @@ extension LoginViewController{
         appDeskriptionLeadingAnchor?.isActive = true
         
     }
-    
-    
 }
+// MARK: - Action
 extension LoginViewController {
-    @objc func signInTapped(){
+    // new method for using swift instead of using obcj func
+    private func createNextButtonAction(){
+        let action = UIAction{[weak self] _ in
+            self?.signInTapped()
+        }
+        signInButton.addAction(action, for: .primaryActionTriggered)
+    }
+    
+    private func signInTapped(){
         errorMessageLabel.isHidden = true
         login()
     }

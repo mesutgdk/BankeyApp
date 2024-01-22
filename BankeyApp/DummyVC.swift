@@ -6,9 +6,7 @@
 
 import UIKit
 
-
-
-class DummyVC: UIViewController {
+final class DummyVC: UIViewController {
     
     let stackView = UIStackView()
     let label = UILabel()
